@@ -73,3 +73,4 @@ https://www.google.com/
 * https://websitesetup.org/javascript-cheat-sheet/
 * https://htmlcheatsheet.com/js/
 * https://www.emezeta.com/articulos/javascript-cheatsheet-chuleta-js
+* https://losapuntesdemajo.vercel.app/
