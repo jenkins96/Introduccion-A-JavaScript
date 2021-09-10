@@ -77,12 +77,12 @@ const CONS4, CONS5 = 5, CONS6= 6;
  en cualquier lugar; mientras que si se declara dentro de una funcion solamente se puede utilizar
  dentro de ella misma. Asimismo las variables declaradas con 'var' pueden ser redeclaradas.
  ```js
-var miSaludo = 'Eso Gente!';
-function miFuncion(){
-    var propuesta = 'Juguemos Fut!';
+var amigo1 = 'Estoy libre';
+function trabajo(){
+    var amigo2 = 'Estoy trabajando';
     }
-console.log(miSaludo); // Imprima 'Eso Gente!'
-console.log(propuesta); // Variable no puede ser accesada, solamente vive dentro de la funcion. No esta definida
+console.log(amigo1); // Imprime 'Estoy libre'
+console.log(amigo2); // amigo2  no puede ser accesada porque solamente esta trabajanod, solamente vive dentro de la funcion 'trabajo'. No existe para la vida social todavia!
 
 // Las variables puede ser redeclaradas:
 var edadDePedro = 22;
