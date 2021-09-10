@@ -70,6 +70,41 @@ let var4, var5 = 5, var6 = 5;
 const CONS1, CONS2, CONS3;
 const CONS4, CONS5 = 5, CONS6= 6;
 ```
+## Conceptos De Hoisting, Declaracion, Expresion
+* Hoisting: Proceso mediante el cual durante la fase de compilacion el motor
+de JavaScript asigna un espacio en memoria a las declaraciones de variables y funciones 
+antes de proceder la fase de ejecucion.  
+Declaracion:  
+Expresion:
+## Declaracion de Funcion VS Expresion de Funcion
+* Declaracion de Funcion: Cuando la funcion es declarada solamente con la palabra reservada 'function',
+ sin recurrir a uns asignacion de variable. Ellas existen por si solas.
+ ```js
+function soyDeclaracionDeFuncion(){}
+
+// Hoisting
+var num1 = 15;
+var num2 = 25;
+var resultado = sumar(num1, num2);
+function sumar(x, y) {
+    return x + y ;
+} 
+console.log(resultado);
+ ```
+* Expresion de Funcion: Cuando se le asigna el valor de una funcion a una variable.
+Se crea una funcion anonim(sin nombre) y se le asigna a una variable que si tiene nom
+ ```js
+var soyDeclaracionDeFuncion = function(){};
+
+// Hoisting
+var num1 = 15;
+var num2 = 25;
+var resultado = sumar(num1, num2);
+var sumar = function(x, y) {
+    return x + y ;
+} 
+console.log(resultado);
+ ```
 ## Diferencias entre var, let y  const
 * var: Es la forma de nombrar variables anterior a ES6. Tienen alcance global(global scope)
  o alcance de funcion(function scoped). El alcance es simplemente a donde podemos utilizar
@@ -96,10 +131,6 @@ se le asigna un espacio a 'var comidaPreferidaDePedro',
 el cual tiene un valor 'undefined' el cual es retornado
 */
  ```
-## Concepto De Hoisting
-Proceso mediante el cual, en la fase de compilacion del motor
-de JavaScript asigna un espacio en memoria las declaraciones de variables y funciones 
-, haciéndolas accesibles  antes de que técnicamente sean creadas.
 ## ¿Qué debería utilizar, let o const?
  Con el tiempo podremos discernir cuando utilizar cada uno. Por el momento, 
  **es mejor utilizar constantes** ya que estas sí arrojarán errores si el valor es modificado.
