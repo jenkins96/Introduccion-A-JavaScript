@@ -131,6 +131,20 @@ se le asigna un espacio a 'var comidaPreferidaDePedro',
 el cual tiene un valor 'undefined' el cual es retornado
 */
  ```
+ * let: Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
+ ```js
+    if(true){
+        let nombre = "Sam";
+        console.log(nombre);
+        }
+    console.log(nombre); // No se encuentra definida, solamente vive dentro de el bloque {}
+ ```
+ Puede cambiar de valor, pero no puede ser redeclarada:
+ ```js
+let tallaZapatos = 42; // Es valido
+tallaZapatos = 43; // Es valido
+let tallaZatapos = 41; // Error, ya ha sido declarada.
+ ```
 ## ¿Qué debería utilizar, let o const?
  Con el tiempo podremos discernir cuando utilizar cada uno. Por el momento, 
  **es mejor utilizar constantes** ya que estas sí arrojarán errores si el valor es modificado.
