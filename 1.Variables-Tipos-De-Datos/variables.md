@@ -70,46 +70,15 @@ let var4, var5 = 5, var6 = 5;
 const CONS1, CONS2, CONS3;
 const CONS4, CONS5 = 5, CONS6= 6;
 ```
-## Conceptos De Hoisting, Declaracion, Expresion
+## Concepto De Hoisting
 * Hoisting: Proceso mediante el cual durante la fase de compilacion el motor
 de JavaScript asigna un espacio en memoria a las declaraciones de variables y funciones 
 antes de proceder la fase de ejecucion.  
-Declaracion:  
-Expresion:
-## Declaracion de Funcion VS Expresion de Funcion
-* Declaracion de Funcion: Cuando la funcion es declarada solamente con la palabra reservada 'function',
- sin recurrir a uns asignacion de variable. Ellas existen por si solas.
- ```js
-function soyDeclaracionDeFuncion(){}
-
-// Hoisting
-var num1 = 15;
-var num2 = 25;
-var resultado = sumar(num1, num2);
-function sumar(x, y) {
-    return x + y ;
-} 
-console.log(resultado);
- ```
-* Expresion de Funcion: Cuando se le asigna el valor de una funcion a una variable.
-Se crea una funcion anonim(sin nombre) y se le asigna a una variable que si tiene nom
- ```js
-var soyDeclaracionDeFuncion = function(){};
-
-// Hoisting
-var num1 = 15;
-var num2 = 25;
-var resultado = sumar(num1, num2);
-var sumar = function(x, y) {
-    return x + y ;
-} 
-console.log(resultado);
- ```
 ## Diferencias entre var, let y  const
 * var: Es la forma de nombrar variables anterior a ES6. Tienen alcance global(global scope)
- o alcance de funcion(function scoped). El alcance es simplemente a donde podemos utilizar
+ o alcance de función(function scoped). El alcance es simplemente a donde podemos utilizar
  estas variables. Es global cuando se declara fuera de una funcion y por tanto se puede utilizar
- en cualquier lugar; mientras que si se declara dentro de una funcion solamente se puede utilizar
+ en cualquier lugar; mientras que si se declara dentro de una función solamente se puede utilizar
  dentro de ella misma. Asimismo las variables declaradas con 'var' pueden ser redeclaradas.
  ```js
 var amigo1 = 'Estoy libre';
@@ -167,6 +136,5 @@ let tallaZatapos = 41; // Error, ya ha sido declarada.
     2.1 let    ==> se utiliza para variables que sabemos van a modificarse en algun momento.
     2.2 const  ==> se utiliza para variables constantes, que sabemos no van a cambiar.
  3. Hoisting es el mecanismo donde el motor de JavaScript durante la fase de 
- compilación, le asigna un espacio en la memoria  a las declaraciones de variables y funciones.Esto permite
-que puedan ser accesadasa antes de que sean creadas.
+ compilación, le asigna un espacio en la memoria  a las declaraciones de variables y funciones.
  4. Como regla general utiliza 'const', sera mas fácil identificar los errores.
