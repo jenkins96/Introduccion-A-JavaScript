@@ -63,30 +63,31 @@ Puesto es una constante, no es posible modificar su valor y nos genera un error:
 ```js
   NOMBRE_APELLIDO = 'Pedrito Micasa'; // Error
 ```
-## Formas De Declarar Variables
+## Formas De Declarar Variable Y Constantes
 ```js
 let var1, var2, var3;
-let var4, var5 = 5, var6 = 5;
-const CONS1, CONS2, CONS3;
-const CONS4, CONS5 = 5, CONS6= 6;
+let var4, var5 = 5, var6 = 6;
+// Las constantes tienen que ser inicializadas con un valor
+const CONS1=1, CONS2=2, CONS3=3;
 ```
 ## Concepto De Hoisting
-* Hoisting: Proceso mediante el cual durante la fase de compilacion el motor
+* Hoisting: Proceso mediante el cual durante la fase de compilación el motor
 de JavaScript asigna un espacio en memoria a las declaraciones de variables y funciones 
-antes de proceder la fase de ejecucion.  
-## Diferencias entre var, let y  const
+antes de proceder la fase de ejecución.  
+## Diferencias Entre var, let y  const
 * var: Es la forma de nombrar variables anterior a ES6. Tienen alcance global(global scope)
  o alcance de función(function scoped). El alcance es simplemente a donde podemos utilizar
- estas variables. Es global cuando se declara fuera de una funcion y por tanto se puede utilizar
+ estas variables. Es global cuando se declara fuera de una función y por tanto se puede utilizar
  en cualquier lugar; mientras que si se declara dentro de una función solamente se puede utilizar
- dentro de ella misma. Asimismo las variables declaradas con 'var' pueden ser redeclaradas.
+ dentro de ella misma. Asímismo las variables declaradas con 'var' pueden ser redeclaradas.
  ```js
 var amigo1 = 'Estoy libre';
 function trabajo(){
     var amigo2 = 'Estoy trabajando';
     }
 console.log(amigo1); // Imprime 'Estoy libre'
-console.log(amigo2); // amigo2  no puede ser accesada porque solamente esta trabajanod, solamente vive dentro de la funcion 'trabajo'. No existe para la vida social todavia!
+console.log(amigo2); // ReferenceError amigo2  
+// no puede ser accesada porque solamente esta trabajando, solamente vive dentro de la función 'trabajo'. No existe para la vida social todavia!
 
 // Las variables puede ser redeclaradas:
 var edadDePedro = 22;
@@ -96,24 +97,50 @@ var edadDePedro = 20;
 console.log(comidaPreferidaDePedro); // Retorna 'undefined' 
 var comidaPreferidaDePedro = 'Hamburguesa';
 /* Esto sucede asi porque durante la fase de compilacion
-se le asigna un espacio a 'var comidaPreferidaDePedro',
-el cual tiene un valor 'undefined' el cual es retornado
+se le asigna un espacio a 'var comidaPreferidaDePedro'. Las variables que 
+se inicializan sin ningún valor tiene un valor por defecto de 'undefined'. 
 */
+  
  ```
- * let: Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
+ * let:Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
  ```js
     if(true){
         let nombre = "Sam";
         console.log(nombre);
         }
-    console.log(nombre); // No se encuentra definida, solamente vive dentro de el bloque {}
+    console.log(nombre); // ReferenceError.No se encuentra definida porque solo vive dentro de el bloque {}
  ```
  Puede cambiar de valor, pero no puede ser redeclarada:
  ```js
-let tallaZapatos = 42; // Es valido
+let tallaZapatos = 42; // Es válido
 tallaZapatos = 43; // Es valido
 let tallaZatapos = 41; // Error, ya ha sido declarada.
  ```
+ Con respecto al hoisting, cuando se declara con let, estas no serán
+ inicializadas, por lo que sucederá un "Reference Error".
+ * const:Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".No pueden ser redeclaras 
+ o actualizadas.
+ ```js
+    if(true){
+        const NAME = "Sam";
+        console.log(NAME);
+        }
+    console.log(NAME); // ReferenceError.No se encuentra definida porque solo vive dentro de el bloque {}
+ ```
+ No puede cambiar de valor, pero no puede ser redeclarada:
+ ```js
+let tallaDeCamisa = "L"; // Es válido
+tallaDeCamisa = "M"; //Error Asignación a una variable constante.
+ ```
+ Sin embargo, en arrays y objetos **es posible actualizar la información** sin
+ ningún problema. Este comportamiento lo exploraremos en otra lección.
+ ```js
+const MYARR = [];
+MYARR.push(5,67, 3);
+console.log(MYARR);
+```
+ Con respecto al hoisting, cuando se declara con 'const', estas no serán
+ inicializadas, por lo que sucederá un "Reference Error".
 ## ¿Qué debería utilizar, let o const?
  Con el tiempo podremos discernir cuando utilizar cada uno. Por el momento, 
  **es mejor utilizar constantes** ya que estas sí arrojarán errores si el valor es modificado.
@@ -122,6 +149,9 @@ let tallaZatapos = 41; // Error, ya ha sido declarada.
  que cambiar de valor en cada iteración. Más adelante se verá esta materia.
 ## Convenciones Básicas Para Nombrar Identificadores
  * Los nombres son sensibles a las mayúsculas.
+ * Los identificadores deben comenzar con una letra, signo de dolar($) o guion bajo(_).
+ * Los identificadores deben consisten  de letras, signo de dolar($) y guion bajo(_).
+ * No pueden denominarse como alguna palabra reservada propia de JavaScript.
  * El nombre debe ser autodescriptivo
  * Existen varias formas de nombrar las variables, una de ellas es 'camelCase',
  donde la inicial de cada palabra se escribe con mayúscula, a excepción de la primera palabra.
@@ -133,8 +163,15 @@ let tallaZatapos = 41; // Error, ya ha sido declarada.
 ## Recapitulando
  1. Las computadoras almacenan la informacion en 'bytes',el cual es una cadena de ocho bits que toman unos y ceros como valores.
  2. Existen dos formas de almacenar información en JS:  
-    2.1 let    ==> se utiliza para variables que sabemos van a modificarse en algun momento.
-    2.2 const  ==> se utiliza para variables constantes, que sabemos no van a cambiar.
+    2.1 let    ==> tienen un alcance de bloque. Se utiliza para variables que sabemos van a modificarse en algun momento.
+    Pueden ser actualizadas pero no redeclaradas.Durante el hoisting no son
+    inicializadas.
+    2.2 const  ==> tienen un alcance de bloque. Se utiliza para variables constantes que sabemos no van a cambiar.
+    No pueden ser actualizadas ni redeclaradas(existen excepciones).Tienen que
+    ser inicializadas con algún valor.
+    2.3 var    ==> tienen un alcance global o de función. Pueden ser
+    actualizadas y redeclaradas. Durante el hoisting son inicializadas con
+    "undefined".
  3. Hoisting es el mecanismo donde el motor de JavaScript durante la fase de 
  compilación, le asigna un espacio en la memoria  a las declaraciones de variables y funciones.
- 4. Como regla general utiliza 'const', sera mas fácil identificar los errores.
+ 4. Como regla general utiliza 'const', será más fácil identificar los errores.
