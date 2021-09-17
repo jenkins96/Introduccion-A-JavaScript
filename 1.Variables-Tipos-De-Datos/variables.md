@@ -24,7 +24,7 @@ el valor de '5'. Aquí tenemos la visualizacion:
 ![texto](./images/locker.png)  
 Donde '1000' refiere a la posición en memoria y el valor de '5' ocupa los primeros
 tres casilleros (bits) de un total de ocho que conforman un 'byte'.
-## ¿Qué es una Variable?
+## ¿Qué Es Una Variable?
 **Una variable es un espacio en memoria para almacenar un tipo de dato
 y asignar un valor**. Como su nombre lo indica, su valor es variable, esto
 quiere decir que el valor puede ser modificado.  
@@ -43,7 +43,7 @@ Puesto es una variable, es posible modificar su valor:
     console.log(colorDeCamisa);
 ```
 Dado que la variable ya ha sido declarada no se utiliza 'let'.
-## ¿Qué es una Constante? 
+## ¿Qué Es Una Constante? 
 **Una constante es un espacio en memoria para almacenar un tipo de dato
 y asignar un valor**. Como su nombre lo indica, su valor es constante, esto
 quiere decir su valor no puede ser modificado después de su inicialización.  
@@ -123,7 +123,7 @@ var pesoEnKg = 88;
 if(true){
     var pesoEnKg = 82;
 }
-console.log(pesoEnKg);
+console.log(pesoEnKg); // 82
  ```
 ### Let
  Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
@@ -169,7 +169,7 @@ let pesoEnKg = 88;
 if(true){
     let pesoEnKg = 82;
 }
-console.log(pesoEnKg);
+console.log(pesoEnKg); // 88
  ```
 ### Const
  Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".No pueden ser redeclaras(dentro del mismo alcance) 
@@ -219,9 +219,9 @@ const pesoEnKg = 88;
 if(true){
     const pesoEnKg = 82;
 }
-console.log(pesoEnKg);
+console.log(pesoEnKg); // 88
  ```
-## ¿Qué debería utilizar, let o const?
+## ¿Qué Debería Utilizar, let o const?
  Con el tiempo podremos discernir cuando utilizar cada uno. Por el momento, 
  **es mejor utilizar constantes** ya que estas sí arrojarán errores si el valor es modificado.
  En cambio 'let' modificará el valor de la variable sin darnos cuenta y no arrojará error alguno.
@@ -243,16 +243,16 @@ console.log(pesoEnKg);
 ## Recapitulando
  1. Las computadoras almacenan la información en 'bytes',el cual es una cadena de ocho bits que toman unos y ceros como valores.
  2. Existen dos formas de almacenar información en JS:  
-    2.1 let    ==> tienen un alcance de bloque. Se utiliza para variables que sabemos van a modificarse en algun momento.
+    2.1 **let**    ==> tienen un alcance de bloque. Se utiliza para variables que sabemos van a modificarse en algun momento.
     Pueden ser actualizadas pero no redeclaradas.Durante el "hoisting" no son
     inicializadas, generando un error.  
-    2.2 const  ==> tienen un alcance de bloque. Se utiliza para variables constantes que sabemos no van a cambiar.
+    2.2 **const**  ==> tienen un alcance de bloque. Se utiliza para variables constantes que sabemos no van a cambiar.
     No pueden ser actualizadas ni redeclaradas(existen excepciones).Tienen que
     ser inicializadas con algún valor. Durante el "hoisting" no son
     incializadas, generando un error.   
-    2.3 var    ==> tienen un alcance global o de función. Pueden ser
+    2.3 **var**    ==> tienen un alcance global o de función. Pueden ser
     actualizadas y redeclaradas. Durante el "hoisting" son inicializadas con
     "undefined".
- 3. Hoisting es el mecanismo donde el motor de JavaScript durante la fase de 
+ 3. "Hoisting" es el mecanismo donde el motor de JavaScript durante la fase de 
  compilación, le asigna un espacio en la memoria  a las declaraciones de variables y funciones.
  4. Como regla general utiliza 'const', será más fácil identificar los errores.
