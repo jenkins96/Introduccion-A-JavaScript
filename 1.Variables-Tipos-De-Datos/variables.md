@@ -117,11 +117,18 @@ var comidaPreferidaDePedro = 'Hamburguesa';
 se le asigna un espacio a 'var comidaPreferidaDePedro'. Las variables que 
 se inicializan sin ningún valor tiene un valor por defecto de 'undefined'. 
 */
+
+// Comportamiento  de var
+var pesoEnKg = 88;
+if(true){
+    var pesoEnKg = 82;
+}
+console.log(pesoEnKg);
  ```
 ### Let
  Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
- Pueden ser actualizadas pero no redeclaradas. Al momento del "hoisting" estas
- no son inicializadas.
+ Pueden ser actualizadas pero no redeclaradas dentro del mismo alcance. Al momento del "hoisting" estas
+ no son inicializadas por lo que se genera un error.
  ```js
 
 // Puede cambiar de valor, pero no puede ser redeclarada:
@@ -154,29 +161,65 @@ empresa();// "Federico",Reference Error, Reference Error
 que el segundo "Reference Error" no sale en la consola.
 
 // Hoisting de let, no serán inicializadas, por lo que sucederá un "Reference Error".
-    console.log(comidaPreferidaDePedro); // Reference Error 
+    console.log(comidaPreferidaDePedro); // "Reference Error" 
     let comidaPreferidaDePedro = 'Hamburguesa';
+
+// Comportamiento  de let
+let pesoEnKg = 88;
+if(true){
+    let pesoEnKg = 82;
+}
+console.log(pesoEnKg);
  ```
 ### Const
- * const:Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".No pueden ser redeclaras 
- o actualizadas.
+ Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".No pueden ser redeclaras(dentro del mismo alcance) 
+ o actualizadas. Al momento de declarar una constante esta tiene que ser
+ inicializada con algún valor. Al momento del "hoisting" esta no es
+ inicializada, por lo que se genera un error.
  ```js
-    if(true){
-        const NAME = "Sam";
-        console.log(NAME);
-        }
-    console.log(NAME); // ReferenceError.No se encuentra definida porque solo vive dentro de el bloque {}
- // No puede cambiar de valor, pero no puede ser redeclarada:
-    let tallaDeCamisa = "L"; // Es válido
+// Puede cambiar de valor, pero no puede ser redeclarada:
+    const tallaDeCamisa = "L"; // Es válido
     tallaDeCamisa = "M"; //Error Asignación a una variable constante.
+    const tallaDeCamisa = "S"; // Es válido, mas no deseable.
+
     //Sin embargo, en arrays y objetos **es posible actualizar la información** sin
     ningún problema. Este comportamiento lo exploraremos en otra lección.
     const MYARR = [];
     MYARR.push(5,67, 3);
     console.log(MYARR);
 
-    // Con respecto al hoisting, cuando se declara con 'const', estas no serán
-    inicializadas, por lo que sucederá un "Reference Error".
+// Sobre alcance de bloque
+function empresa(){
+
+const EMPLEADO_1 = "Federico";
+
+    function recursosHumanos(){
+
+    const EMPLEADO_2 = "Mari";
+    console.log(EMPLEADO_1);
+
+    }
+
+    if(true){
+        const EMPLEADO_3 = "Johnny Comodin";
+    }
+
+    recursosHumanos();
+    console.log(EMPLEADO_3);
+    console.log(EMPLEADO_2);
+}
+empresa();// "Federico","Reference Error", "Reference Error"
+
+// "Hoisting" de const, no serán inicializadas, por lo que sucederá un "Reference Error".
+    console.log(comidaPreferidaDePedro); // Reference Error 
+    const comidaPreferidaDePedro = 'Hamburguesa';
+
+// Comportamiento  de const
+const pesoEnKg = 88;
+if(true){
+    const pesoEnKg = 82;
+}
+console.log(pesoEnKg);
  ```
 ## ¿Qué debería utilizar, let o const?
  Con el tiempo podremos discernir cuando utilizar cada uno. Por el momento, 
@@ -198,16 +241,17 @@ que el segundo "Reference Error" no sale en la consola.
  * Si es constante se suelen nombrar en mayúscula en algún formato como: 'SNAKE_CASE'
  * Si es una variable privada se le antepone un '_' para indicar que es de intencion privada.  
 ## Recapitulando
- 1. Las computadoras almacenan la informacion en 'bytes',el cual es una cadena de ocho bits que toman unos y ceros como valores.
+ 1. Las computadoras almacenan la información en 'bytes',el cual es una cadena de ocho bits que toman unos y ceros como valores.
  2. Existen dos formas de almacenar información en JS:  
     2.1 let    ==> tienen un alcance de bloque. Se utiliza para variables que sabemos van a modificarse en algun momento.
-    Pueden ser actualizadas pero no redeclaradas.Durante el hoisting no son
-    inicializadas.  
+    Pueden ser actualizadas pero no redeclaradas.Durante el "hoisting" no son
+    inicializadas, generando un error.  
     2.2 const  ==> tienen un alcance de bloque. Se utiliza para variables constantes que sabemos no van a cambiar.
     No pueden ser actualizadas ni redeclaradas(existen excepciones).Tienen que
-    ser inicializadas con algún valor.  
+    ser inicializadas con algún valor. Durante el "hoisting" no son
+    incializadas, generando un error.   
     2.3 var    ==> tienen un alcance global o de función. Pueden ser
-    actualizadas y redeclaradas. Durante el hoisting son inicializadas con
+    actualizadas y redeclaradas. Durante el "hoisting" son inicializadas con
     "undefined".
  3. Hoisting es el mecanismo donde el motor de JavaScript durante la fase de 
  compilación, le asigna un espacio en la memoria  a las declaraciones de variables y funciones.
