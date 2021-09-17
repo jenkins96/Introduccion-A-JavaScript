@@ -75,48 +75,89 @@ const CONS1=1, CONS2=2, CONS3=3;
 de JavaScript asigna un espacio en memoria a las declaraciones de variables y funciones 
 antes de proceder la fase de ejecución.  
 ## Diferencias Entre var, let y  const
-* var: Es la forma de nombrar variables anterior a ES6. Tienen alcance global(global scope)
+### Var
+ Es la forma de nombrar variables anterior a ES6. Tienen alcance global(global scope)
  o alcance de función(function scoped). El alcance es simplemente a donde podemos utilizar
  estas variables. Es global cuando se declara fuera de una función y por tanto se puede utilizar
  en cualquier lugar; mientras que si se declara dentro de una función solamente se puede utilizar
  dentro de ella misma. Asímismo las variables declaradas con 'var' pueden ser redeclaradas.
  ```js
-var amigo1 = 'Estoy libre';
-function trabajo(){
-    var amigo2 = 'Estoy trabajando';
-    }
-console.log(amigo1); // Imprime 'Estoy libre'
-console.log(amigo2); // ReferenceError amigo2  
-// no puede ser accesada porque solamente esta trabajando, solamente vive dentro de la función 'trabajo'. No existe para la vida social todavia!
-
 // Las variables puede ser redeclaradas:
 var edadDePedro = 22;
 var edadDePedro = 20;
 
+// Sobre alcance global Vs alcance de función
+function empresa(){
+
+var empleado1 = "Federico";
+
+    function recursosHumanos(){
+
+    var empleado2 = "Mari";
+    console.log(empleado1);
+
+    }
+
+    if(true){
+        var empleado3 = "Johnny Comodin";
+    }
+
+    recursosHumanos();
+    console.log(empleado3);
+    console.log(empleado2);
+}
+empresa();// "Federico","Johnny Comodin", Reference Error
+
 // Hoisting de var:
+
 console.log(comidaPreferidaDePedro); // Retorna 'undefined' 
 var comidaPreferidaDePedro = 'Hamburguesa';
-/* Esto sucede asi porque durante la fase de compilacion
+
+/* Esto sucede así porque durante la fase de compilación
 se le asigna un espacio a 'var comidaPreferidaDePedro'. Las variables que 
 se inicializan sin ningún valor tiene un valor por defecto de 'undefined'. 
 */
-  
  ```
- * let:Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
+### Let
+ Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".
+ Pueden ser actualizadas pero no redeclaradas. Al momento del "hoisting" estas
+ no son inicializadas.
  ```js
-    if(true){
-        let nombre = "Sam";
-        console.log(nombre);
-        }
-    console.log(nombre); // ReferenceError.No se encuentra definida porque solo vive dentro de el bloque {}
+
 // Puede cambiar de valor, pero no puede ser redeclarada:
     let tallaZapatos = 42; // Es válido
     tallaZapatos = 43; // Es valido
     let tallaZatapos = 41; // Error, ya ha sido declarada.
 
-    // Con respecto al hoisting, cuando se declara con let no serán
-    inicializadas, por lo que sucederá un "Reference Error".
+// Sobre alcance de bloque
+function empresa(){
+
+let empleado1 = "Federico";
+
+    function recursosHumanos(){
+
+    let empleado2 = "Mari";
+    console.log(empleado1);
+
+    }
+
+    if(true){
+        let empleado3 = "Johnny Comodin";
+    }
+
+    recursosHumanos();
+    console.log(empleado3);
+    console.log(empleado2);
+}
+empresa();// "Federico",Reference Error, Reference Error
+// Cuando el motor de JS se encuentra este error, sale inmediatamente, por lo
+que el segundo "Reference Error" no sale en la consola.
+
+// Hoisting de let, no serán inicializadas, por lo que sucederá un "Reference Error".
+    console.log(comidaPreferidaDePedro); // Reference Error 
+    let comidaPreferidaDePedro = 'Hamburguesa';
  ```
+### Const
  * const:Forma de declarar variables en ES6. Tiene un alcance de bloque, esto refiere a cualquier codigo dentro de "{}".No pueden ser redeclaras 
  o actualizadas.
  ```js
